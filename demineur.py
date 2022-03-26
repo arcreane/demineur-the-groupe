@@ -2,7 +2,7 @@
 grille = []
 
 # Taille de la grille
-nb_column = 9
+nb_colonne = 9
 nb_ligne = 9
 
 # Symbole
@@ -10,23 +10,29 @@ carre = "■"
 vide = " "
 bombe = "💣️"
 
-row = nb_ligne + 1
-column = nb_column + 1
+# Ajout colonne et ligne + index
+ligne = nb_ligne + 1
+colonne = nb_colonne + 1
 
-for i in range(column):
+# Boucle 10 colonne
+for i in range(colonne):
     grille.append([])
-    for j in range(row):
+    # Boucle 10 ligne
+    for j in range(ligne):
+        # Pour chaque lignes, la première case correspond au numero de ligne
         if(j == 0):
-            if(i < nb_column):
+            if(i < nb_colonne):
                 grille[i].append(i)
             else:
                 grille[i].append(vide)
-        if(i == nb_column):
+        # Pour chaque colonnes, la dernière case correspond au numero de colonne
+        if(i == nb_colonne):
             grille[i].append(j)
         else:
             grille[i].append(carre)
 
-for i in range(column):
-    for j in range(row):
+# Print de la grille
+for i in range(colonne):
+    for j in range(ligne):
         print(grille[i][j], end=" ")
     print()
