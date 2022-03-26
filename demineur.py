@@ -55,6 +55,7 @@ def accueil():
     choix1 = "1. Jouer"
     choix2 = "2. Voir mes scores"
     choix3 = "3. Quitter"
+    print("Choisissez une option : ")
     print(choix1 + "\n" + choix2 + "\n" + choix3 + "\n")
     joueur = int(input("Quel est votre choix ? "))
     if(joueur == 1):
@@ -69,6 +70,7 @@ def accueil():
 # Niveaux
 def niveauChoix():
     # Proposer niveau ou retour au menu
+    print("Choisissez un niveau de difficulté : ")
     niveau1 = "1. Facile"
     niveau2 = "2. Normal"
     niveau3 = "3. Difficile"
@@ -78,19 +80,21 @@ def niveauChoix():
     if(joueur == 1):
         niveauColonne = 9
         niveauLigne = 9
-        print("Vous avez choisie le niveau : Facile")
+        print("Vous avez choisie le niveau : Facile\n")
     elif(joueur == 2):
         niveauColonne = 16
         niveauLigne = 16
-        print("Vous avez choisie le niveau : Normal")
+        print("Vous avez choisie le niveau : Normal\n")
     elif(joueur == 3):
         niveauColonne = 16
         niveauLigne = 30
-        print("Vous avez choisie le niveau : Difficile")
+        print("Vous avez choisie le niveau : Difficile\n")
     elif(joueur == 4):
         accueil()
     else:
-        print("Veuillez saisir le chiffre correspondant à votre choix")
+        print("Veuillez saisir le chiffre correspondant à votre choix\n")
+        print(niveau1 + "\n" + niveau2 + "\n" + niveau3 + "\n" + retour)
+        joueur = int(input("Quel est votre choix ? "))
 
 # Scores
 def scores():
@@ -104,11 +108,4 @@ def quitter():
 def menu():
     # ACCUEIL
     accueil()
-
-    
-    
-
-        
-
-
 menu()
