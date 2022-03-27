@@ -2,8 +2,6 @@
 # Création de la grille grille
 grille = []
 
-# Taille de la grille
-
 # Symbole
 carre = "■ "
 vide = "  "
@@ -35,4 +33,8 @@ def creationGrille(niveauColonne, niveauLigne):
             print(grille[i][j], end=" ")
         print()
 
-
+# Logique du Jeu
+def logiqueJeu(niveauColonne, niveauLigne):
+    creationGrille(niveauColonne, niveauLigne)
+    print("")
+    # Systeme du jeu

@@ -65,17 +65,17 @@ def niveauChoix():
         niveauColonne = 9
         niveauLigne = 9
         print("Vous avez choisie le niveau : Facile\n")
-        jeu.creationGrille(niveauColonne, niveauLigne)
+        jeu.logiqueJeu(niveauColonne, niveauLigne)
     elif(int(joueur) == 2):
         niveauColonne = 16
         niveauLigne = 16
         print("Vous avez choisie le niveau : Normal\n")
-        jeu.creationGrille(niveauColonne, niveauLigne)
+        jeu.logiqueJeu(niveauColonne, niveauLigne)
     elif(int(joueur) == 3):
         niveauColonne = 16
         niveauLigne = 30
         print("Vous avez choisie le niveau : Difficile\n")
-        jeu.creationGrille(niveauColonne, niveauLigne)
+        jeu.logiqueJeu(niveauColonne, niveauLigne)
     elif(int(joueur) == 4):
         accueil()
 
