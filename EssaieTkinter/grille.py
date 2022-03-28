@@ -1,26 +1,35 @@
 import random
 from tkinter import *
+from turtle import width
 
 # grille
+grille = []
 def creationGrille(window, niveauColonne, niveauLigne, mines):
     canva = Canvas(window, width=300, height=300, bg='ivory')
+    numCase = 0
     for i in range(niveauColonne):
         for j in range(niveauLigne):
-            button = Button(canva,bd=2,width=2,height=1, background="white")
-            button.grid(row=j, column=i)
-    # coordsMines(mines, canva)
+            grille.append(Label(canva, text="", bd=1, width=1, height=1,padx=9,pady=5, relief=SUNKEN))
+            # button = Button(canva,bd=2,width=2,height=1, background="white")  #relief ="GROOVE"
+            coord = numCase
+            grille[numCase].grid(row=j, column=i)
+            grille[numCase].bind("<Button-1>", click(coord))
+            numCase +=1
+    coordsMines(numCase, mines)
     canva.pack()
+
+def click(coord):
+    pass
 
 
 # mines
-# def coordsMines(mines, canva):
-#     nb1Tableau = []
-#     nb2Tableau = []
-#     for i in range(mines):
-#         nb1 = random.randint(1, 9)
-#         nb2 = random.randint(1, 9)
-#         nb1Tableau.append(nb1)
-#         nb2Tableau.append(nb2)
-#         # mines = Button(canva, text="T", width=2,height=1)
-#         # mines.grid(row = nb1Tableau[i], column = nb2Tableau[i])
+def coordsMines(numCase, mines):
+    presenceBombe = []
+    for i in range(mines):
+        nb1 = random.randint(0, 9)
+        while nb1 in presenceBombe:
+                nb1 = random.randint(0, 9)
+        presenceBombe.append(nb1)
+        grille[numCase].config(image = "img/bombe.png", relief = GROOVE, bd=3,width=0,height=0)
+        presenceBombe.append(numCase)
 
