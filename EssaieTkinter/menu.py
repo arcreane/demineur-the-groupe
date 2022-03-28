@@ -6,6 +6,7 @@ def fenetre(window, select,niveauColonne, niveauLigne, mines):
         window.destroy()
         facile = Tk()
         facile.title("Démineur")
+        facile.config(bg="#2515AA")
         menuSelonFenetre(facile)
         grille.creationGrille(facile,niveauColonne, niveauLigne, mines)
 
@@ -13,12 +14,14 @@ def fenetre(window, select,niveauColonne, niveauLigne, mines):
         window.destroy()
         normal = Tk()
         normal.title("Démineur")
+        normal.config(bg="#2515AA")
         menuSelonFenetre(normal)
         grille.creationGrille(normal,niveauColonne, niveauLigne, mines)
     if select == 3:
         window.destroy()
         difficile = Tk()
         difficile.title("Démineur")
+        difficile.config(bg="#2515AA")
         menuSelonFenetre(difficile)
         grille.creationGrille(difficile,niveauColonne, niveauLigne, mines)
 
