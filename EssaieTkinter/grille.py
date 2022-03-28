@@ -18,11 +18,12 @@ def creationGrille(window, niveauColonne, niveauLigne, mines):
             numCase +=1
     coordsMines(maxCase, numCase, mines, canva)
     canva.pack()
+    
 
 def click(coord):
     pass
 
-bombeImg = PhotoImage(file="img/bombe.png")
+# bombeImg = PhotoImage(file="img/bombe.png")
 # mines
 def coordsMines(maxCase, numCase, mines, canva):
     presenceBombe = []
@@ -31,6 +32,5 @@ def coordsMines(maxCase, numCase, mines, canva):
         while nb1 in presenceBombe:
                 nb1 = random.randint(0, maxCase)
         presenceBombe.append(nb1)
-        grille[nb1].config(image=bombeImg, relief = GROOVE, bd=1,width=0,height=0)
+        grille[nb1].config(text="B", relief = GROOVE, bd=1,width=0,height=0)
         presenceBombe.append(numCase)
-
