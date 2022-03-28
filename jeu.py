@@ -33,9 +33,23 @@ def creationGrille(niveauColonne, niveauLigne):
             print(grille[i][j], end=" ")
         print()
 
+
+# Placement des Mines
+def coordsMines():
+    nb1Tableau = []
+    nb2Tableau = []
+    for i in range(10):
+        nb1 = random.randint(1, 9)
+        nb2 = random.randint(1, 9)
+        nb1Tableau.append(nb1)
+        nb2Tableau.append(nb2)
+        if(grille[nb1Tableau[i]][nb2Tableau[i]] == carre):
+            grille[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
+    print(grille.count("💣️"))
+
 # Logique du Jeu
 def logiqueJeu(niveauColonne, niveauLigne):
     creationGrille(niveauColonne, niveauLigne)
     print("")
-    
+    coordsMines()
     # Systeme du jeu
