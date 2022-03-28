@@ -1,3 +1,4 @@
+import random
 
 # Création de la grille grille
 grille = []
@@ -22,7 +23,7 @@ def creationGrille(niveauColonne, niveauLigne):
                     grille[i].append(str(i).zfill(2))
                 else:
                     grille[i].append(vide)
-            # Pour chaque colonnes, la dernière case correspond au numero de colonne
+            # Pour chaque colonnes, la première case correspond au numero de colonne
             if(i == 0):
                 grille[i].append(str(j+1).zfill(2))
             else:
@@ -43,8 +44,7 @@ def coordsMines():
         nb2 = random.randint(1, 9)
         nb1Tableau.append(nb1)
         nb2Tableau.append(nb2)
-        if(grille[nb1Tableau[i]][nb2Tableau[i]] == carre):
-            grille[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
+        grille[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
     print(grille.count("💣️"))
 
 # Logique du Jeu
