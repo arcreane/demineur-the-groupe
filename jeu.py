@@ -52,4 +52,5 @@ def logiqueJeu(niveauColonne, niveauLigne):
     creationGrille(niveauColonne, niveauLigne)
     print("")
     coordsMines()
+    creationGrille(niveauColonne, niveauLigne)
     # Systeme du jeu
