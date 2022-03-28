@@ -1,0 +1,2 @@
+while(nb2 in nb2Tableau):
+    nb2 = random.randint(1, 9)

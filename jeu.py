@@ -45,7 +45,12 @@ def coordsMines():
         nb1Tableau.append(nb1)
         nb2Tableau.append(nb2)
         grille[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
+    print(nb1Tableau)
+    print(nb2Tableau)
     print(grille.count("💣️"))
+
+niveauColonne = 9
+niveauLigne = 9
 
 # Logique du Jeu
 def logiqueJeu(niveauColonne, niveauLigne):
@@ -54,3 +59,5 @@ def logiqueJeu(niveauColonne, niveauLigne):
     coordsMines()
     creationGrille(niveauColonne, niveauLigne)
     # Systeme du jeu
+
+logiqueJeu(niveauColonne, niveauLigne)
