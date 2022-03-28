@@ -3,7 +3,7 @@
 grille = []
 
 # Symbole
-carre = "■ "
+carre = "◻️ "
 vide = "  "
 bombe = "💣️"
 
@@ -18,13 +18,13 @@ def creationGrille(niveauColonne, niveauLigne):
         for j in range(ligne):
             # Pour chaque lignes, la première case correspond au numero de ligne
             if(j == 0):
-                if(i < niveauColonne):
+                if(i > 0):
                     grille[i].append(str(i).zfill(2))
                 else:
                     grille[i].append(vide)
             # Pour chaque colonnes, la dernière case correspond au numero de colonne
-            if(i == niveauColonne):
-                grille[i].append(str(j).zfill(2))
+            if(i == 0):
+                grille[i].append(str(j+1).zfill(2))
             else:
                 grille[i].append(carre)
     # Print de la grille
@@ -37,4 +37,5 @@ def creationGrille(niveauColonne, niveauLigne):
 def logiqueJeu(niveauColonne, niveauLigne):
     creationGrille(niveauColonne, niveauLigne)
     print("")
+    
     # Systeme du jeu
