@@ -1,63 +1,63 @@
 import random
+from tkinter import *
 
-# Création de la grille grille
 grille = []
+b = []
 
-# Symbole
-carre = "◻️ "
-vide = "  "
-bombe = "💣️"
+# grille
+def creationGrille(window, niveauColonne, niveauLigne, mines):
+    
+    canva = Canvas(window, width=300, height=300, bg='#2515AA')
+    numCase = 0
+    maxCase = niveauColonne * niveauLigne -1
+    for i in range(niveauColonne):
+        for j in range(niveauLigne):
+            grille.append(Label(canva, text=" ", bd=1, width=1, height=1,padx=9,pady=5, relief=SUNKEN))
+            grille[numCase].grid(row=j, column=i)
 
-def creationGrille(niveauColonne, niveauLigne):
-    # Ajout colonne et ligne + index
-    ligne = niveauLigne + 1
-    colonne = niveauColonne + 1
-    # Boucle 10 colonne
-    for i in range(colonne):
-        grille.append([])
-        # Boucle 10 ligne
-        for j in range(ligne):
-            # Pour chaque lignes, la première case correspond au numero de ligne
-            if(j == 0):
-                if(i > 0):
-                    grille[i].append(str(i).zfill(2))
-                else:
-                    grille[i].append(vide)
-            # Pour chaque colonnes, la première case correspond au numero de colonne
-            if(i == 0):
-                grille[i].append(str(j+1).zfill(2))
-            else:
-                grille[i].append(carre)
-    # Print de la grille
-    for i in range(colonne):
-        for j in range(ligne):
-            print(grille[i][j], end=" ")
-        print()
+            b.append(Button(canva,text="",image="",padx=8,pady=1)) 
+            b[numCase].grid(row=j, column=i)
+            b[numCase].bind("<Button-1>", lambda i, coord=numCase: click(grille, b, coord))
+            b[numCase].config(relief=RAISED)
+            numCase +=1
+    coordsMines(grille, maxCase, numCase, mines)
+    canva.pack()
+    
+
+# photo= PhotoImage(file="img/bombe.png")
+
+# mines
+
+def click(grille, b, coord):
+    b[coord].grid_forget()
+    verifGagne(grille, coord)
+
+def coordsMines(grille, maxCase, numCase, mines):
+    presenceBombe = []
+    
+    for i in range(mines):
+        nb1 = random.randint(0, maxCase)
+        while nb1 in presenceBombe:
+                nb1 = random.randint(0, maxCase)
+        presenceBombe.append(nb1)
+        grille[nb1].config(text="B", relief = GROOVE, bd=1,width=0,height=0)
+        presenceBombe.append(numCase)
+
+def verifGagne(grille, coord):
+    if grille[coord].cget("text") == "B":
+        perdu()
+
+def perdu():
+    
+    perdu = Tk()
+    perdu.title("Démineur")
+    perdu.config(bg="#2515AA")
+    messagePerdu = Text(perdu, text = "BOUM! Vous avez perdu.", fg="Arial, 10")
+    messagePerdu.pack(expand=CENTER)
+    perdu.mainloop()
 
 
-# Placement des Mines
-def coordsMines():
-    nb1Tableau = []
-    nb2Tableau = []
-    for i in range(10):
-        nb1 = random.randint(1, 9)
-        nb2 = random.randint(1, 9)
-        nb1Tableau.append(nb1)
-        nb2Tableau.append(nb2)
-        grille[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
-    print(nb1Tableau)
-    print(nb2Tableau)
-    print(grille.count("💣️"))
-
-niveauColonne = 9
-niveauLigne = 9
-
-# Logique du Jeu
-def logiqueJeu(niveauColonne, niveauLigne):
-    creationGrille(niveauColonne, niveauLigne)
-    print("")
-    coordsMines()
-    creationGrille(niveauColonne, niveauLigne)
-    # Systeme du jeu
-
-logiqueJeu(niveauColonne, niveauLigne)
+# def supprimer(b, coord):
+#     maxCase = len(coord)
+#     for i in maxCase:
+#         b[i].grid_forget()
