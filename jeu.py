@@ -23,7 +23,43 @@ def creationGrille(window, niveauColonne, niveauLigne, mines):
     coordsMines(grille, maxCase, numCase, mines)
     canva.pack()
     
+#  Chiffres
+def chiffres(ref, niveauColonne, niveauLigne, maxCase):
 
+    maxBomb=["1","2","3","4","5","6","7","8"]
+    top=[]
+    down=[]
+    top.append(0)
+    for i in range(niveauLigne):
+        top.append((i+1)*niveauColonne)
+        down.append(((i+1)*niveauColonne)-1)
+    down.append(niveauColonne * niveauLigne)
+
+    if ref in top:
+        for i in [ref-niveauLigne,ref-(niveauLigne-1),ref+niveauLigne,ref+(niveauLigne+1),ref+1]:  #On parcours les positions à côter de la bombe pour mettre si possible les bombes à proximités pour le HAUT
+            if i>=0 and i<=maxCase:
+                if grille[i].cget("text")==" ":
+                    v="1"
+                elif grille[i].cget("text") in maxBomb:
+                    v=str(int(grille[i].cget("text"))+1)
+                grille[i].config(text=v)
+    elif ref in down:
+        for i in [ref-niveauLigne,ref-(niveauLigne+1),ref+niveauLigne,ref+(niveauLigne-1),ref-1]:  #On parcours les positions à côter de la bombe pour mettre si possible les bombes à proximités pour le BAS
+            if i>=0 and i<=maxCase:
+                if grille[i].cget("text")==" ":
+                    v="1"
+                elif grille[i].cget("text") in maxBomb:
+                    v=str(int(grille[i].cget("text"))+1)
+                grille[i].config(text=v)
+    else:
+        for i in [ref-niveauLigne,ref-(niveauLigne+1),ref-(niveauLigne-1),ref+niveauLigne,ref+(niveauLigne-1),ref+(niveauLigne+1),ref-1,ref+1]:  #On parcours les positions à côter de la bombe pour mettre si possible les bombes à proximités pour les autres
+            if i>=0 and i<=maxCase:
+                if grille[i].cget("text")==" ":
+                    v="1"
+                elif grille[i].cget("text") in maxBomb:
+                    v=str(int(grille[i].cget("text"))+1)
+                grille[i].config(text=v)
+                
 # photo= PhotoImage(file="img/bombe.png")
 
 # mines
