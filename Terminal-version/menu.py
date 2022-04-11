@@ -63,20 +63,23 @@ def niveauChoix():
             joueur = input("Quel est votre choix ? ")
         print(" ")
     if(int(joueur) == 1):
-        niveauColonne = 9
-        niveauLigne = 9
+        nbColonne = 9
+        nbLigne = 9
+        nbMines = 10
         print("Vous avez choisie le niveau : Facile\n")
-        jeu.logiqueJeu(niveauColonne, niveauLigne)
+        jeu.logiqueJeu(nbColonne, nbLigne, nbMines)
     elif(int(joueur) == 2):
-        niveauColonne = 16
-        niveauLigne = 16
+        nbColonne = 16
+        nbLigne = 16
+        nbMines = 44
         print("Vous avez choisie le niveau : Normal\n")
-        jeu.logiqueJeu(niveauColonne, niveauLigne)
+        jeu.logiqueJeu(nbColonne, nbLigne, nbMines)
     elif(int(joueur) == 3):
-        niveauColonne = 16
-        niveauLigne = 30
+        nbColonne = 16
+        nbLigne = 30
+        nbMines = 99
         print("Vous avez choisie le niveau : Difficile\n")
-        jeu.logiqueJeu(niveauColonne, niveauLigne)
+        jeu.logiqueJeu(nbColonne, nbLigne, nbMines)
     elif(int(joueur) == 4):
         accueil()
 
