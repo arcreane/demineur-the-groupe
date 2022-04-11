@@ -2,19 +2,28 @@ import random
 
 # Création de la grille grille
 grille = []
+statue = []
+
+colonne = 0
+ligne = 0
 
 # Symbole
 carre = "◻️ "
 vide = "  "
 bombe = "💣️"
+# carre = "?"
+# vide = " "
+# bombe = "X"
 
 def creationGrille(niveauColonne, niveauLigne):
+    global ligne, colonne
     # Ajout colonne et ligne + index
     ligne = niveauLigne + 1
     colonne = niveauColonne + 1
     # Boucle 10 colonne
     for i in range(colonne):
         grille.append([])
+        statue.append([])
         # Boucle 10 ligne
         for j in range(ligne):
             # Pour chaque lignes, la première case correspond au numero de ligne
@@ -47,10 +56,28 @@ def coordsMines():
         grille[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
     print(grille.count("💣️"))
 
+def joueur():
+    x = int(input("Choisissez une ligne : "))
+    y = int(input("Choisissez une colonne : "))
+    return devoilerCase(x, y)
+
+
+def devoilerCase(x, y):
+    print()
+    grille[y][x] = 0
+
+    # Print de la grille
+    for i in range(colonne):
+        for j in range(ligne):
+            # statue[i][j] = True
+            print(grille[i][j], end=" ")
+        print()
+
+
+
 # Logique du Jeu
 def logiqueJeu(niveauColonne, niveauLigne):
     creationGrille(niveauColonne, niveauLigne)
     print("")
-    coordsMines()
-    creationGrille(niveauColonne, niveauLigne)
+    joueur()
     # Systeme du jeu
