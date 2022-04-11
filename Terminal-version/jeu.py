@@ -32,12 +32,18 @@ def creationGrille(niveauColonne, niveauLigne, nbMines):
             # Pour chaque lignes, la première case correspond au numero de ligne
             if(j == 0):
                 if(i > 0):
-                    grille[i].append(str(i).zfill(2))
+                    if(len(str(i)) == 2):
+                        grille[i].append(str(i))
+                    else:
+                        grille[i].append(" " + str(i)) 
                 else:
                     grille[i].append(vide)
             # Pour chaque colonnes, la première case correspond au numero de colonne
             if(i == 0):
-                grille[i].append(str(j+1).zfill(2))
+                if(len(str(j+1)) == 2):
+                    grille[i].append(str(j+1))
+                else:
+                    grille[i].append(" " + str(j+1)) 
             else:
                 grille[i].append(carre)
                 devoiler[i].append(False)
@@ -63,44 +69,14 @@ def creationGrille(niveauColonne, niveauLigne, nbMines):
 
 # Placement des Mines
 def coordsMines():
-    nb1Tableau = []
-    nb2Tableau = []
     for i in range(10):
         nb1 = random.randint(1, 9)
         nb2 = random.randint(1, 9)
-        nb1Tableau.append(nb1)
-        nb2Tableau.append(nb2)
-        grilleFinal[nb1Tableau[i]][nb2Tableau[i]] = "💣️"
-    # print(grille.count("💣️"))
 
-# def nombre_voisins(grille, y,x):
-#     """
-#     Fonction qui renvoie le nombre de cases vosines contenants une mine
-#     """
-#     cpt = 0
-#     av = 1
-
-#     if x<len(grille[y])-1 and grille[y][x+av]==-1:
-#         cpt+=1
-#     if y<len(grille)-1 and grille[y+av][x]==-1:
-#         cpt+=1
-#     if x>0 and grille[y][x-av]==-1:
-#         cpt+=1
-#     if y>0 and grille[y-av][x]==-1:
-#         cpt+=1
-
-#     if x>0 and y>0 and grille[y-av][x-av]==-1:
-#         cpt+=1
-#     if y>0 and x<len(grille[y])-1 and grille[y-av][x+av]==-1:
-#         cpt+=1
-#     if y<len(grille)-1 and x<len(grille[y])-1 and grille[y+av][x+av]==-1:
-#         cpt+=1
-#     if y<len(grille)-1 and x>0 and grille[y+av][x-av]==-1:
-#         cpt+=1
-
-#     return cpt
-
-
+        while (grilleFinal[nb1][nb2] != vide):
+            nb1 = random.randint(1, 9)
+            nb2 = random.randint(1, 9)
+        grilleFinal[nb1][nb2] = "💣️"
 
 def joueur():
     x = int(input("Choisissez une ligne : "))
@@ -114,7 +90,7 @@ def devoilerCase(x, y):
         grille[x][y] = "💣️"
         print("perdu")
     else:
-        grille[x][y] = "."
+        grille[x][y] = " ."
         print("vide")
 
     # Print de la grille
