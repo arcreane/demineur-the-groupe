@@ -48,7 +48,7 @@ def creationGrille(niveauColonne, niveauLigne, nbMines):
                 grille[i].append(carre)
                 devoiler[i].append(False)
                 grilleFinal[i].append(vide)
-    coordsMines()
+    coordsMines(niveauColonne, niveauLigne, nbMines)
 
 
     # Print de la grille
@@ -68,15 +68,23 @@ def creationGrille(niveauColonne, niveauLigne, nbMines):
 #     return grilleFinal
 
 # Placement des Mines
-def coordsMines():
-    for i in range(10):
-        nb1 = random.randint(1, 9)
-        nb2 = random.randint(1, 9)
+def coordsMines(c, l, nbMines):
+    for i in range(nbMines):
+        nb1 = random.randint(1, c - 1)
+        nb2 = random.randint(1, l -1)
 
         while (grilleFinal[nb1][nb2] != vide):
             nb1 = random.randint(1, 9)
             nb2 = random.randint(1, 9)
         grilleFinal[nb1][nb2] = "💣️"
+
+# def compteMinesVoisines(grille, c, l):
+#     nbVoisines = 0
+#     for j in range(c-1, c+2):
+#         for i in range(l-1, l+2):
+#             if j >= 0 and j < len(grille) and i >= 0 and i < len(grille[l]):
+#                 nbVoisines += grille[j][i]
+#     return nbVoisines
 
 def joueur():
     x = int(input("Choisissez une ligne : "))
@@ -88,11 +96,8 @@ def devoilerCase(x, y):
     print()
     if(grilleFinal[x][y] == "💣️"):
         grille[x][y] = "💣️"
-        print("perdu")
-    else:
-        grille[x][y] = " ."
-        print("vide")
-
+    # else:
+        # compteMinesVoisines(grille, y, x)
     # Print de la grille
     for i in range(colonne):
         for j in range(ligne):

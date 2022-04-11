@@ -71,12 +71,12 @@ def niveauChoix():
     elif(int(joueur) == 2):
         nbColonne = 16
         nbLigne = 16
-        nbMines = 44
+        nbMines = 40
         print("Vous avez choisie le niveau : Normal\n")
         jeu.logiqueJeu(nbColonne, nbLigne, nbMines)
     elif(int(joueur) == 3):
-        nbColonne = 16
-        nbLigne = 30
+        nbColonne = 30
+        nbLigne = 16
         nbMines = 99
         print("Vous avez choisie le niveau : Difficile\n")
         jeu.logiqueJeu(nbColonne, nbLigne, nbMines)
