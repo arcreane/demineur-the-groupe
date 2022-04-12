@@ -77,6 +77,7 @@ def coordsMines():
             nb1 = random.randint(1, 9)
             nb2 = random.randint(1, 9)
         grilleFinal[nb1][nb2] = "💣️"
+    return grilleFinal
 
 def joueur():
     x = int(input("Choisissez une ligne : "))
@@ -110,9 +111,51 @@ def devoilerCase(x, y):
 # Logique du Jeu
 def logiqueJeu(nbColonne, nbLigne, nbMines ):
     creationGrille(nbColonne, nbLigne, nbMines)
+    grille_aleatoire(nbColonne, nbLigne, nbMines)
     print("")
     
     while perdu == False:
         joueur()
         
     # Systeme du jeu
+
+# Nombre
+def nombre_voisins(grille, y,x):
+    cpt = 0
+    av = 1
+
+    if x<len(grille[y])-1 and grille[y][x+av]==-1:
+        cpt+=1
+    if y<len(grille)-1 and grille[y+av][x]==-1:
+        cpt+=1
+    if x>0 and grille[y][x-av]==-1:
+        cpt+=1
+    if y>0 and grille[y-av][x]==-1:
+        cpt+=1
+
+    if x>0 and y>0 and grille[y-av][x-av]==-1:
+        cpt+=1
+    if y>0 and x<len(grille[y])-1 and grille[y-av][x+av]==-1:
+        cpt+=1
+    if y<len(grille)-1 and x<len(grille[y])-1 and grille[y+av][x+av]==-1:
+        cpt+=1
+    if y<len(grille)-1 and x>0 and grille[y+av][x-av]==-1:
+        cpt+=1
+
+    return cpt
+
+# Placer les bombes
+def definir_nb_voisins(grille):
+    grille_voisins = [[0 for i in range(len(grille[0]))]for i in range(len(grille))]
+    for i in range(len(grille)):
+        for j in range(len(grille[0])):
+            if grille[i][j] != -1:
+                grille_voisins[i][j] = nombre_voisins(grille,i,j)
+            else:
+                grille_voisins[i][j] = -1
+    return grille_voisins
+
+def grille_aleatoire(longueur,largeur,nb_mines):
+    if nb_mines >= 0 and nb_mines<=longueur*largeur-1:
+        g = coordsMines()
+        return definir_nb_voisins(g)
