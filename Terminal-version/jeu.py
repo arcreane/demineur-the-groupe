@@ -57,16 +57,6 @@ def creationGrille(niveauColonne, niveauLigne, nbMines):
             print(grille[i][j], end=" ")
         print()
 
-
-# def placer_mines(grille, niveauColonne, niveauLigne, nb_mines):
-#     totalMine=0
-#     while totalMine != nb_mines:
-#         ligne = random.randint(0, niveauLigne - 1)
-#         colonne = random.randint(0, niveauColonne - 1)
-
-#         grilleFinal[ligne][colonne].append("X")
-#     return grilleFinal
-
 # Placement des Mines
 def coordsMines():
     for i in range(10):
@@ -100,12 +90,6 @@ def devoilerCase(x, y):
             # statue[i][j] = True
             print(grille[i][j], end=" ")
         print()
-    
-    # if():
-    #     perdu = True
-    # else:
-    #     perdu = False
-
 
 
 # Logique du Jeu
@@ -116,7 +100,7 @@ def logiqueJeu(nbColonne, nbLigne, nbMines ):
     
     while perdu == False:
         joueur()
-        
+
     # Systeme du jeu
 
 # Nombre
@@ -124,27 +108,43 @@ def nombre_voisins(grille, y,x):
     cpt = 0
     av = 1
 
+    #Chiffre en bas
     if x<len(grille[y])-1 and grille[y][x+av]==-1:
         cpt+=1
+
+    #Chiffre a droite
     if y<len(grille)-1 and grille[y+av][x]==-1:
         cpt+=1
+    
+    #Chiffre en haut
     if x>0 and grille[y][x-av]==-1:
         cpt+=1
+        
+    #Chiffre a gauche
     if y>0 and grille[y-av][x]==-1:
         cpt+=1
 
+
+
+    #Chiffre en haut a gauche
     if x>0 and y>0 and grille[y-av][x-av]==-1:
         cpt+=1
+
+    #Chiffre en bas a gauche
     if y>0 and x<len(grille[y])-1 and grille[y-av][x+av]==-1:
         cpt+=1
+
+    #Chiffre en haut a droite
     if y<len(grille)-1 and x<len(grille[y])-1 and grille[y+av][x+av]==-1:
         cpt+=1
+
+    #Chiffre en haut a gauche
     if y<len(grille)-1 and x>0 and grille[y+av][x-av]==-1:
         cpt+=1
 
     return cpt
 
-# Placer les bombes
+# Placer les nombre autoure des bombes
 def definir_nb_voisins(grille):
     grille_voisins = [[0 for i in range(len(grille[0]))]for i in range(len(grille))]
     for i in range(len(grille)):
